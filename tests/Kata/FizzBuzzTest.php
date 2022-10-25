@@ -102,4 +102,37 @@ class FizzBuzzTest extends TestCase
 
         $this->assertEquals('FizzBuzz', $ActualArray[29]);
     }
+
+    public function testReturnStringFizzBuzzForAllNumberMultipleOf3And5(): void
+    {
+        $ActualArray = $this->fizzBuzz->retrieveArrayOfNumbersOrFizzOrBuzz();
+
+        foreach ($ActualArray as $key => $value) {
+            if (is_int(($key + 1) / 3) && is_int(($key + 1) / 5)) {
+                $this->assertEquals('FizzBuzz', $value);
+            }
+        }
+    }
+
+    public function testReturnStringFizzForAllNumberMultipleOf3ButNot5(): void
+    {
+        $ActualArray = $this->fizzBuzz->retrieveArrayOfNumbersOrFizzOrBuzz();
+
+        foreach ($ActualArray as $key => $value) {
+            if (is_int(($key + 1) / 3) && !is_int(($key + 1) / 5)) {
+                $this->assertEquals('Fizz', $value);
+            }
+        }
+    }
+
+    public function testReturnStringFizzForAllNumberMultipleOf5ButNot3(): void
+    {
+        $ActualArray = $this->fizzBuzz->retrieveArrayOfNumbersOrFizzOrBuzz();
+
+        foreach ($ActualArray as $key => $value) {
+            if (!is_int(($key + 1) / 3) && is_int(($key + 1) / 5)) {
+                $this->assertEquals('Buzz', $value);
+            }
+        }
+    }
 }
